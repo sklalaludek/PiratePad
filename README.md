@@ -5,4 +5,4 @@ A real-time editor.
 * express.js
 * socket.io
 
-> Check out the live demo: [piratePad]()
+> Check out the live demo: [piratePad](https://sklalaludek.github.io/PiratePad/)
