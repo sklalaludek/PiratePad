@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Coders Lab - PiratePad</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        textarea {
+            height: 100vh;
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body>
+    <h2>PiratePad</h2>
+    <textarea></textarea>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <script>
+        // nowe połączenie w czasie rzeczywistym
+        const socket = io();
+        // odebranie informacji od serwera
+        socket.on('refreshText', data => {
+            $('textarea').val(data);
+        });
+        // zmiana na stronie, wysłanie informacji do serwera
+        $('textarea').on('input', () => {
+            socket.emit('newText', $('textarea').val());
+        });
+    </script>
+</body>
+
+</html>
