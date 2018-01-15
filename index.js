@@ -1,24 +1,24 @@
 const express = require('express');
+// app setup
 const app = express();
-
 const http = require('http').Server(app);
-const io = require('socket.io')(http);
-
 http.listen(3000, () => {
     console.log('Express is working at localhost:3000');
 });
-
+// static files
 app.use(express.static('public'));
+// socket setup
+const io = require('socket.io')(http);
 
 let currText = '';
-// połączenie
+// listen for a connection
 io.on('connection', socket => {
-    // wyświetlanie aktualnego tekstu na stronie
+    // emit the current text
     socket.emit('refreshText', currText);
-    // odebranie danych z strony
+    // listen for a new text from the client
     socket.on('newText', data => {
         currText = data;
-        // wysłanie danych na stronę
+        // send it out to different clients
         io.emit('refreshText', currText);
     });
 });

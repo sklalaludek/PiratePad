@@ -1,5 +1,5 @@
 {
-  "name": "pire-pad",
+  "name": "pirate-pad",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,5 +11,6 @@
   "dependencies": {
     "express": "^4.16.2",
     "socket.io": "^2.0.4"
-  }
+  },
+  "devDependencies": {}
 }
